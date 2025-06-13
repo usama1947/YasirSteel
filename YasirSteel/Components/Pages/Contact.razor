@@ -1,0 +1,97 @@
+﻿@page "/contact"
+@using System.ComponentModel.DataAnnotations
+@inject IJSRuntime JSRuntime
+@rendermode RenderMode.InteractiveServer
+
+<PageTitle>Contact Us - YasirSteel</PageTitle>
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh; padding: 4rem 0;">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Contact YasirSteel</h1>
+            <p>Get in touch with our expert team for quotes, technical consultation, and project support.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="page-section section-white">
+    <div class="container">
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 style="color: #1e3c72;">Get In Touch</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">
+                    We're here to assist you with all your steel-related needs. Reach out via the form or contact us directly.
+                </p>
+                <ul class="contact-details">
+                    <li>
+                        <strong>Address:</strong> 123 Steel Road, Industrial Zone, Karachi, Pakistan
+                    </li>
+                    <li>
+                        <strong>Phone:</strong> <a href="tel:+922112345678">+92 21 123 45678</a>
+                    </li>
+                    <li>
+                        <strong>Email:</strong> <a href="mailto:info@yasirsteel.com">info@yasirsteel.com</a>
+                    </li>
+                    <li>
+                        <strong>Working Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form">
+                <h3 style="color: #1e3c72;">Send Us a Message</h3>
+                <EditForm Model="@contactForm" OnValidSubmit="HandleSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label>Name</label>
+                        <InputText class="form-input" @bind-Value="contactForm.Name" />
+                        <ValidationMessage For="@(() => contactForm.Name)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <InputText class="form-input" @bind-Value="contactForm.Email" />
+                        <ValidationMessage For="@(() => contactForm.Email)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone (Optional)</label>
+                        <InputText class="form-input" @bind-Value="contactForm.Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <InputTextArea class="form-input form-textarea" @bind-Value="contactForm.Message" />
+                        <ValidationMessage For="@(() => contactForm.Message)" />
+                    </div>
+                    <button type="submit" class="cta-button">Submit</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private ContactForm contactForm = new();
+
+    private class ContactForm
+    {
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Email is required"), EmailAddress(ErrorMessage = "Invalid email address")]
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Message is required")]
+        public string Message { get; set; } = string.Empty;
+    }
+
+    private async Task HandleSubmit()
+    {
+        // Log form data (replace with actual backend logic, e.g., API call)
+        Console.WriteLine($"Form submitted: {contactForm.Name}, {contactForm.Email}, {contactForm.Phone}, {contactForm.Message}");
+
+        // Show confirmation alert using IJSRuntime
+        await JSRuntime.InvokeVoidAsync("alert", "Thank you for your message! We'll get back to you soon.");
+
+        // Reset form
+        contactForm = new();
+    }
+}le="color: #666; margin-bottom:
