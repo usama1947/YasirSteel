@@ -63,7 +63,7 @@ function ContactPage() {
 
           <div style={{ marginTop: '2rem' }}>
             <a className="whatsapp-chip" href={whatsappLink} target="_blank" rel="noreferrer">
-              <img src="./images/whatsapp-icon.png" alt="WhatsApp" />
+              <img src="/images/whatsapp-icon.png" alt="WhatsApp" />
               Chat on WhatsApp
             </a>
           </div>

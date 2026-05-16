@@ -101,7 +101,7 @@ function Layout() {
         aria-label="Chat on WhatsApp"
         title="Chat on WhatsApp"
       >
-        <img src="./images/whatsapp-icon.png" alt="" aria-hidden="true" />
+        <img src="/images/whatsapp-icon.png" alt="" aria-hidden="true" />
       </a>
 
       <footer className="footer footer-global">
